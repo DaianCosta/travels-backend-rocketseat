@@ -1,0 +1,41 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - dev
+      - develop
+      - development
+      - release
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    env:
+      PROJECT_NAME: travels-backend
+      AWS_REGION: us-east-1
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_HOST: ${{ secrets.SONAR_HOST }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: configure-crentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: unit-test
+      run: chmod +x ./devops/scripts/unit-test.sh && ./devops/scripts/unit-test.sh
+      
+    - name: sonar
+      run: chmod +x ./devops/scripts/sonar.sh && ./devops/scripts/sonar.sh
+
+    - name: build
+      run: chmod +x ./devops/scripts/build.sh && ./devops/scripts/build.sh
