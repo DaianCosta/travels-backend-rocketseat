@@ -1,4 +1,4 @@
-FROM ubuntu:20.10
+FROM ubuntu:22.04
 
 RUN apt-get update -y && apt-get upgrade -y && \
     apt-get install -y software-properties-common && \
@@ -23,7 +23,7 @@ WORKDIR /app
 COPY . .
 
 CMD dotnet build-server shutdown && \
-    dotnet sonarscanner begin /o:rocket-seat \
+    dotnet sonarscanner begin /o:daian-costa \
         /d:sonar.verbose=false \
         /v:${VERSION} \
         /n:${PROJECT_NAME} \
