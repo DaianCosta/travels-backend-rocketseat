@@ -18,6 +18,7 @@ sonar_execute() {
         --mount source=${VOlUME_NAME},target=/app \
         -e VERSION="${VERSION}" \
         -e PROJECT_NAME="${PROJECT_NAME}" \
+        -e SONAR_ORGANIZATION="${SONAR_ORGANIZATION}" \
         -e SONAR_HOST="${SONAR_HOST}" \
         -e SONAR_TOKEN="${SONAR_TOKEN}" \
         -e SONAR_EXCLUSIONS="**/Migrations/**" \
