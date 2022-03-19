@@ -19,6 +19,7 @@ jobs:
       AWS_REGION: us-east-1
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       SONAR_HOST: ${{ secrets.SONAR_HOST }}
+      SONAR_ORGANIZATION: daian-costa
     runs-on: ubuntu-latest
 
     steps:

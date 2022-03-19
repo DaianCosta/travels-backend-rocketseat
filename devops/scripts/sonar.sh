@@ -34,13 +34,9 @@ sonar_execute() {
         check_sucessful
 }
 
-PROJECT_NAME="travels-backend-rocketseat"
-VERSION="1.0.4"
+VERSION="1.0.${GITHUB_RUN_NUMBER}"
 VOlUME_NAME="${PROJECT_NAME}-volume-${VERSION}"
-BRANCH="main"
-SONAR_TOKEN="c7fd02217f6c3369f9d61a262d12755339436ad8"
-SONAR_ORGANIZATION="daian-costa"
-SONAR_HOST="https://sonarcloud.io/"
+BRANCH=`echo ${GITHUB_REF} | sed "s/refs\/heads\///g"`
 
 sonar_build
     check_sucessful
