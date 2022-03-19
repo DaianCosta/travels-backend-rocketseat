@@ -15,7 +15,7 @@ sonar_execute() {
 
     docker run \
         --rm \
-        --mount source=${VOlUME_NAME},target=/app \
+        --mount source=${VOlUME_NAME},target=//app \
         -e VERSION="${VERSION}" \
         -e PROJECT_NAME="${PROJECT_NAME}" \
         -e SONAR_ORGANIZATION="${SONAR_ORGANIZATION}" \
@@ -34,9 +34,13 @@ sonar_execute() {
         check_sucessful
 }
 
-VERSION="1.0.${GITHUB_RUN_NUMBER}"
+PROJECT_NAME="travels-backend-rocketseat"
+VERSION="1.0.4"
 VOlUME_NAME="${PROJECT_NAME}-volume-${VERSION}"
-BRANCH=`echo ${GITHUB_REF} | sed "s/refs\/heads\///g"`
+BRANCH="main"
+SONAR_TOKEN="c7fd02217f6c3369f9d61a262d12755339436ad8"
+SONAR_ORGANIZATION="daian-costa"
+SONAR_HOST="https://sonarcloud.io/"
 
 sonar_build
     check_sucessful
